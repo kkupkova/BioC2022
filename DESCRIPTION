@@ -28,14 +28,13 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.0
+RoxygenNote: 7.2.1
 Depends: 
     Biobase,
     IRanges,
     GenomicRanges, 
     GenomicDistributions,
     GenomicDistributionsData,
-    BSgenome.Celegans.UCSC.ce11,
     BSgenome.Hsapiens.UCSC.hg38.masked,
     ggplot2
 Imports:
