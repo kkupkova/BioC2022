@@ -5,17 +5,20 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BuildABiocWorkshop • BuildABiocWorkshop</title>
+<title>GenomicDistributions: Fast, Easy, And Flexible Summary And Visualization Of Genomic Regions • GenomicDistributionsBioC2022</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="BuildABiocWorkshop">
-<meta property="og:description" content="This package serves as a template for using github actions to 
-    prepare a Bioconductor Workshop package for use. In particular,
-    a pkgdown website and docker image are generated based on workflow 
-    settings. ">
+<script src="pkgdown.js"></script><meta property="og:title" content="GenomicDistributions: Fast, Easy, And Flexible Summary And Visualization Of Genomic Regions">
+<meta property="og:description" content="This package serves as a tutorial for using GenomicDistributions
+   package. With GenomicDistributions you can easily generate and plot summary
+   statistics for genomic regions of interest. The offered functions allow you 
+   to calculate and plot following: distribution over chromosomes, distances 
+   from genomic features (e.g., TSS), distribution over annotation classes, 
+   signal summary in regions, region widths, distances to the nearest neighbor,
+   GC content, and dinucleotide frequencies.">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -35,8 +38,8 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">BuildABiocWorkshop</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.0.0</span>
+        <a class="navbar-link" href="index.html">GenomicDistributionsBioC2022</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.0</span>
       </span>
     </div>
 
@@ -53,6 +56,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="articles/GenomicDistributions_vignette.html">GenomicDistributions demo</a>
+    </li>
+    <li>
       <a href="articles/HOWTO_BUILD_WORKSHOP.html">How To Build A Workshop Package</a>
     </li>
     <li>
@@ -63,7 +69,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/seandavi/BuildABiocWorkshop" class="external-link">
+  <a href="https://github.com/kkupkova/GenomicDistributions_BioC2022" class="external-link">
     <span class="fa fa-github"></span>
      
   </a>
@@ -81,58 +87,64 @@
       </header><div class="row">
   <div class="contents col-md-9">
 <div class="section level1">
-<div class="page-header"><h1 id="buildabiocworkshop">BuildABiocWorkshop<a class="anchor" aria-label="anchor" href="#buildabiocworkshop"></a>
+<div class="page-header"><h1 id="genomicdistributions-demo---bioc2022">GenomicDistributions demo - BioC2022<a class="anchor" aria-label="anchor" href="#genomicdistributions-demo---bioc2022"></a>
 </h1></div>
-<p>This package is a template for building a Bioconductor workshop. The package includes Github actions to:</p>
-<ol style="list-style-type: decimal">
-<li>Set up bioconductor/bioconductor_docker:devel on Github resources</li>
-<li>Install package dependencies for your package (based on the <code>DESCRIPTION</code> file)</li>
-<li>Run <code><a href="http://r-lib.github.io/rcmdcheck/reference/rcmdcheck.html" class="external-link">rcmdcheck::rcmdcheck</a></code>
-</li>
-<li>Build a pkgdown website and push it to github pages</li>
-<li>Build a docker image with the installed package and dependencies and deploy to <a href="https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry#pulling-container-images" class="external-link">the Github Container Repository</a> at the name <code>ghcr.io/gihub_user/repo_name</code>, all lowercase.</li>
-</ol>
-<div class="section level2">
-<h2 id="responsibilities">Responsibilities<a class="anchor" aria-label="anchor" href="#responsibilities"></a>
-</h2>
-<p>Package authors are primarily responsible for:</p>
-<ol style="list-style-type: decimal">
-<li>Creating a landing site of their choosing for their workshops (a website). This website should be listed in the <code>DESCRIPTION</code> file as the <code>URL</code>.</li>
-<li>Creating a docker image that will contain workshop materials and the installed packages necessary to run those materials. The name of the resulting docker image, including “tag” if desired, should be listed in a non-standard tag, <code>DockerImage:</code> in the <code>DESCRIPTION</code> file.</li>
-</ol>
-<p>Both of those tasks can be accomplished using the Github actions included in this template package. The vignette accompanying this package describes how to accomplish both of these tasks.</p>
+<div class="section level3">
+<h3 id="description">Description<a class="anchor" aria-label="anchor" href="#description"></a>
+</h3>
+<p>During this workshop participants will be introduced to <em>GenomicDistributions</em> package. At first, we will go over a general introduction to <em>GenomicDistributions</em>, where we will learn about the purpose, design, and advantages of <em>GenomicDistributions</em>. Followed by instructor-led demo, we will go through all of the functions included in <em>GenomicDistributions</em>, where participants will be able to try the functions on provided example datasets. The participants will learn, how to calculate and plot summary statistics extracted from the example datasets and how to further customize plots generated with <em>GenomicDistributions</em>. Some of the <em>GenomicDistributions</em> functions require genome annotations (for <em>hg19</em>, <em>hg38</em>, and <em>mm10</em> these are all included in the <em>GenomicDistributionsData</em> package and passed to a subset of functions ending with the suffix <em>“Ref”</em>), the participants will be taught how to easily create and use these annotations. At the end of the workshop, all participants will be able to extract following summary statistics about their regions of interest: distribution over chromosomes, distances from genomic features (e.g., TSSs), distribution over annotation classes, signal summary in regions, region widths, distances to the nearest neighbor, GC content, and dinucleotide frequencies.</p>
 </div>
-<div class="section level2">
-<h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a>
-</h2>
-<p>For detailed instructions, see the <code>How to build a workshop</code> article/vignette.</p>
-</div>
-<div class="section level2">
-<h2 id="results-of-successful-deployment">Results of successful deployment<a class="anchor" aria-label="anchor" href="#results-of-successful-deployment"></a>
-</h2>
+<div class="section level3">
+<h3 id="pre-requisites">Pre-requisites<a class="anchor" aria-label="anchor" href="#pre-requisites"></a>
+</h3>
+<p>Helpful but not required:</p>
 <ul>
-<li>A working docker image that contains the installed package and dependencies.</li>
-<li>An up-to-date <code>pkgdown</code> website at <a href="https://YOURUSERNAME.github.io/YOURREPOSITORYNAME/" class="external-link uri">https://YOURUSERNAME.github.io/YOURREPOSITORYNAME/</a>
-</li>
-<li>Docker image will be tagged with <code>latest</code>, <code>sha-XXXXXX</code> where <code>XXXXXX</code> is the hash of the current <code>master</code> commit, and <code>master</code>.</li>
+<li>Basic knowledge of R syntax</li>
+<li>Familiarity with the GenomicRanges class</li>
+</ul>
+<p>Anyone interested in getting familiar with <em>GenomicDistributions</em> before the workshop is welcome to that that by reading the <em>GenomicDistributions</em> publication or vignettes provided with the package:</p>
+<ul>
+<li><a href="https://bmcgenomics.biomedcentral.com/articles/10.1186/s12864-022-08467-y" class="external-link">publication</a></li>
+<li><a href="http://code.databio.org/GenomicDistributions/articles/index.html" class="external-link">vignettes</a></li>
 </ul>
 </div>
-<div class="section level2">
-<h2 id="to-use-the-resulting-image">To use the resulting image:<a class="anchor" aria-label="anchor" href="#to-use-the-resulting-image"></a>
-</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-e</span> PASSWORD=<span class="op">&lt;</span>choose_a_password_for_rstudio<span class="op">&gt;</span> -p 8787:8787 YOURDOCKERIMAGENAME</span></code></pre></div>
-<p>Once running, navigate to <a href="http://localhost:8787/" class="external-link uri">http://localhost:8787/</a> and then login with <code>rstudio</code>:<code>yourchosenpassword</code>.</p>
-<p>To try with <strong>this</strong> repository docker image:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-e</span> PASSWORD=abc <span class="at">-p</span> 8787:8787 ghcr.io/seandavi/buildabiocworkshop</span></code></pre></div>
-<p><em>NOTE</em>: Running docker that uses the password in plain text like above exposes the password to others in a multi-user system (like a shared workstation or compute node). In practice, consider using an environment variable instead of plain text to pass along passwords and other secrets in docker command lines.</p>
+<div class="section level3">
+<h3 id="participation">Participation<a class="anchor" aria-label="anchor" href="#participation"></a>
+</h3>
+<p>Participants will be able to test all of the functions provided in <em>GenomicDistributions</em> on example datasets, learn how to customize plots and create genome annotations required by some of the functions.</p>
 </div>
-<div class="section level2">
-<h2 id="whatcha-get">Whatcha get<a class="anchor" aria-label="anchor" href="#whatcha-get"></a>
-</h2>
+<div class="section level3">
+<h3 id="r--bioconductor-packages-used">
+<em>R</em> / <em>Bioconductor</em> packages used<a class="anchor" aria-label="anchor" href="#r--bioconductor-packages-used"></a>
+</h3>
 <ul>
-<li><a href="https://seandavi.github.io/BuildABiocWorkshop" class="uri">https://seandavi.github.io/BuildABiocWorkshop</a></li>
-<li>A Docker image that you can run locally, in the cloud, or (usually) even as a singularity container on HPC systems.</li>
+<li><em>GenomicDistributions</em></li>
+<li><em>GenomicDistributionsData</em></li>
 </ul>
+</div>
+<div class="section level3">
+<h3 id="time-outline">Time outline<a class="anchor" aria-label="anchor" href="#time-outline"></a>
+</h3>
+<table class="table">
+<thead><tr class="header">
+<th>Activity</th>
+<th>Time</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Introduction</td>
+<td>10m</td>
+</tr>
+<tr class="even">
+<td>Package demo</td>
+<td>25m</td>
+</tr>
+<tr class="odd">
+<td>Questions</td>
+<td>10m</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
   </div>
@@ -141,8 +153,8 @@
     <div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/seandavi/BuildABiocWorkshop/" class="external-link">Browse source code</a></li>
-<li><a href="https://github.com/seandavi/BuildABiocWorkshop/issues/new/choose" class="external-link">Report a bug</a></li>
+<li><a href="https://github.com/databio/GenomicDistributions/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/databio/GenomicDistributions/issues/new" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 
@@ -158,14 +170,24 @@
 <div class="citation">
 <h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li><a href="authors.html#citation">Citing BuildABiocWorkshop</a></li>
+<li><a href="authors.html#citation">Citing GenomicDistributionsBioC2022</a></li>
 </ul>
 </div>
 
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Sean Davis <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-8991-6458" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Kristyna Kupkova <br><small class="roles"> Author, maintainer </small>  </li>
+<li>Jose Verdezoto <br><small class="roles"> Author </small>  </li>
+<li>Tessa Danehy <br><small class="roles"> Author </small>  </li>
+<li>John Lawson <br><small class="roles"> Author </small>  </li>
+<li>Jose Verdezoto <br><small class="roles"> Author </small>  </li>
+<li>Michal Stolarczyk <br><small class="roles"> Author </small>  </li>
+<li>Jason Smith <br><small class="roles"> Author </small>  </li>
+<li>Bingjie Xue <br><small class="roles"> Author </small>  </li>
+<li>Sophia Rogers <br><small class="roles"> Author </small>  </li>
+<li>John Stubbs <br><small class="roles"> Author </small>  </li>
+<li>Nathan C. Sheffield <br><small class="roles"> Author </small>  </li>
 </ul>
 </div>
 
@@ -177,12 +199,12 @@
 
       <footer><div class="copyright">
   <p></p>
-<p>Developed by Sean Davis.</p>
+<p>Developed by Kristyna Kupkova, Jose Verdezoto, Tessa Danehy, John Lawson, Jose Verdezoto, Michal Stolarczyk, Jason Smith, Bingjie Xue, Sophia Rogers, John Stubbs, Nathan C. Sheffield.</p>
 </div>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>

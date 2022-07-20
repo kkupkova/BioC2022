@@ -1,11 +1,12 @@
 pandoc: 2.17.1.1
-pkgdown: 2.0.5
+pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
+  GenomicDistributions_vignette: GenomicDistributions_vignette.html
   HOWTO_BUILD_WORKSHOP: HOWTO_BUILD_WORKSHOP.html
   workshop_example: workshop_example.html
-last_built: 2022-07-15T19:19Z
+last_built: 2022-07-20T03:40Z
 urls:
-  reference: https://seandavi.github.io/BuildABiocWorkshop/reference
-  article: https://seandavi.github.io/BuildABiocWorkshop/articles
+  reference: https://kkupkova.github.io/GenomicDistributions_BioC2022/reference
+  article: https://kkupkova.github.io/GenomicDistributions_BioC2022/articles
 
