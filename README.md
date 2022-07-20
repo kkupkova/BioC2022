@@ -1,52 +1,58 @@
-# BuildABiocWorkshop
+# GenomicDistributions demo - BioC2022
 
-This package is a template for building a Bioconductor workshop. The package
-includes Github actions to:
+### Description
 
-1. Set up bioconductor/bioconductor_docker:devel on Github resources
-2. Install package dependencies for your package (based on the `DESCRIPTION` file)
-3. Run `rcmdcheck::rcmdcheck`
-4. Build a pkgdown website and push it to github pages
-5. Build a docker image with the installed package and dependencies and deploy to [the Github Container Repository](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry#pulling-container-images) at the name `ghcr.io/gihub_user/repo_name`, all lowercase. 
-
-## Responsibilities
-
-Package authors are primarily responsible for:
-
-1. Creating a landing site of their choosing for their workshops (a website). This website should be listed in the `DESCRIPTION` file as the `URL`.
-2. Creating a docker image that will contain workshop materials and the installed packages necessary to run those materials. The name of the resulting docker image, including "tag" if desired, should be listed in a non-standard tag, `DockerImage:` in the `DESCRIPTION` file. 
-
-Both of those tasks can be accomplished using the Github actions included in this template package. The vignette accompanying this package describes how to accomplish both of these tasks.
-
-## Details
-
-For detailed instructions, see the `How to build a workshop` article/vignette.
-
-## Results of successful deployment
-
-- A working docker image that contains the installed package and dependencies.
-- An up-to-date `pkgdown` website at https://YOURUSERNAME.github.io/YOURREPOSITORYNAME/
-- Docker image will be tagged with `latest`, `sha-XXXXXX` where `XXXXXX` is the hash of the current `master` commit, and `master`. 
-
-## To use the resulting image:
-
-```sh
-docker run -e PASSWORD=<choose_a_password_for_rstudio> -p 8787:8787 YOURDOCKERIMAGENAME
-```
-Once running, navigate to http://localhost:8787/ and then login with `rstudio`:`yourchosenpassword`. 
-
-To try with **this** repository docker image:
-
-```sh
-docker run -e PASSWORD=abc -p 8787:8787 ghcr.io/seandavi/buildabiocworkshop
-```
-
-*NOTE*: Running docker that uses the password in plain text like above exposes the password to others 
-in a multi-user system (like a shared workstation or compute node). In practice, consider using an environment 
-variable instead of plain text to pass along passwords and other secrets in docker command lines. 
+During this workshop participants will be introduced to _GenomicDistributions_
+package. At first, we will go over a general introduction to 
+_GenomicDistributions_, where we will learn about the purpose, design, and 
+advantages of _GenomicDistributions_. Followed by instructor-led demo,
+we will go through all of the functions included in 
+_GenomicDistributions_, where participants will be able to try the functions
+on provided example datasets. The participants will learn, 
+how to calculate and plot summary statistics extracted from the example 
+datasets and how to further customize plots generated with 
+_GenomicDistributions_. Some of the _GenomicDistributions_ functions require
+genome annotations (for _hg19_, _hg38_, and _mm10_ these are all included in 
+the _GenomicDistributionsData_ package and passed to a subset of functions 
+ending with the suffix _“Ref”_), the participants will be taught how to easily 
+create and use these annotations. At the end of the workshop, all participants 
+will be able to extract following summary statistics about their regions of 
+interest: distribution over chromosomes, distances from genomic features 
+(e.g., TSSs), distribution over annotation classes, signal summary in regions,
+region widths, distances to the nearest neighbor, GC content, and dinucleotide
+frequencies.
 
 
-## Whatcha get
+### Pre-requisites
 
-- https://seandavi.github.io/BuildABiocWorkshop
-- A Docker image that you can run locally, in the cloud, or (usually) even as a singularity container on HPC systems. 
+Helpful but not required:
+
+* Basic knowledge of R syntax
+* Familiarity with the GenomicRanges class
+
+Anyone interested in getting familiar with _GenomicDistributions_ before the
+workshop is welcome to that that by reading the _GenomicDistributions_ 
+publication or vignettes provided with the package: 
+
+* [publication](https://bmcgenomics.biomedcentral.com/articles/10.1186/s12864-022-08467-y)
+* [vignettes](http://code.databio.org/GenomicDistributions/articles/index.html)
+
+### Participation
+
+Participants will be able to test all of the functions provided in
+_GenomicDistributions_ on example datasets, learn how to customize plots 
+and create genome annotations required by some of the functions.
+
+### _R_ / _Bioconductor_ packages used
+
+* _GenomicDistributions_
+* _GenomicDistributionsData_
+
+### Time outline
+
+| Activity                     | Time |
+|------------------------------|------|
+| Introduction                 | 10m  |
+| Package demo                 | 25m  |
+| Questions                    | 10m  |
+

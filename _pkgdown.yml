@@ -1,4 +1,4 @@
-url: https://seandavi.github.io/BuildABiocWorkshop
+url: https://kkupkova.github.io/GenomicDistributions_BioC2022/
 
 template:
   params:
@@ -6,13 +6,13 @@ template:
     #ganalytics: UA-99999999-9
 
 home:
-  title: "BuildABiocWorkshop"
+  title: "GenomicDistributions: Fast, Easy, And Flexible Summary And Visualization Of Genomic Regions"
   type: inverse
 
 
 navbar:
   right:
    - icon: fa-github
-     href: https://github.com/seandavi/BuildABiocWorkshop
+     href: https://github.com/kkupkova/GenomicDistributions_BioC2022
      
 

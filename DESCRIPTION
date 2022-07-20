@@ -1,28 +1,64 @@
-Package: BuildABiocWorkshop
-Title: Bioconductor or R Workshop Template and Github Actions
-Version: 2.0.0
+Package: GenomicDistributionsBioC2022
+Title: GenomicDistributions: Fast, Easy, And Flexible Summary And 
+   Visualization Of Genomic Regions
+Version: 1.0.0
 Authors@R: 
-    person(given = "Sean",
-           family = "Davis",
-           role = c("aut", "cre"),
-           email = "seandavi@gmail.com",
-           comment = c(ORCID = "0000-0002-8991-6458"))
-Description: This package serves as a template for using github actions to 
-    prepare a Bioconductor Workshop package for use. In particular,
-    a pkgdown website and docker image are generated based on workflow 
-    settings. 
+    c(
+	  person("Kristyna", "Kupkova", role=c("aut", "cre"),
+    email = "kristynakupkova@gmail.com"),
+    person("Jose", "Verdezoto", role="aut"),
+    person("Tessa", "Danehy", role="aut"),
+    person("John", "Lawson", role="aut"),
+    person("Jose", "Verdezoto", role="aut"),
+    person("Michal", "Stolarczyk", role="aut"),
+    person("Jason", "Smith", role="aut"),
+    person("Bingjie", "Xue", role="aut"),
+    person("Sophia", "Rogers", role="aut"),
+    person("John", "Stubbs", role="aut"),
+    person(given=c("Nathan", "C."), "Sheffield",
+    email = "nathan@code.databio.org", role="aut"))
+Description: This package serves as a tutorial for using GenomicDistributions
+   package. With GenomicDistributions you can easily generate and plot summary
+   statistics for genomic regions of interest. The offered functions allow you 
+   to calculate and plot following: distribution over chromosomes, distances 
+   from genomic features (e.g., TSS), distribution over annotation classes, 
+   signal summary in regions, region widths, distances to the nearest neighbor,
+   GC content, and dinucleotide frequencies.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.0
+RoxygenNote: 7.2.0
 Depends: 
-    Biobase
+    Biobase,
+    IRanges,
+    GenomicRanges, 
+    GenomicDistributions,
+    GenomicDistributionsData,
+    BSgenome.Celegans.UCSC.ce11,
+    ggplot2
+Imports:
+    data.table,
+    reshape2,
+    methods,
+    utils,
+    Biostrings,
+    plyr,
+    dplyr,
+    scales,
+    broom,
+    GenomeInfoDb,
+    stats,
+    ensembldb,
+    BSgenome,
+    GenomicFeatures
 Suggests: 
     knitr,
     rmarkdown,
-    pkgdown
-URL: https://seandavi.github.io/BuildABiocWorkshop/
-BugReports: https://github.com/seandavi/BuildABiocWorkshop/issues/new/choose
+    pkgdown,
+    AnnotationFilter,
+    rtracklayer
+URL: https://kkupkova.github.io/GenomicDistributionsBioC2022/
+BugReports: https://github.com/kkupkova/GenomicDistributionsBioC2022/issues/new/choose
 VignetteBuilder: knitr
-DockerImage: ghcr.io/seandavi/buildabiocworkshop:latest
+DockerImage: ghcr.io/kkupkova/genomicdistributionsbioc2022:latest
