@@ -36,6 +36,7 @@ Depends:
     GenomicDistributions,
     GenomicDistributionsData,
     BSgenome.Celegans.UCSC.ce11,
+    BSgenome.Hsapiens.UCSC.hg38.masked,
     ggplot2
 Imports:
     data.table,
