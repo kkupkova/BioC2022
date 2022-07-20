@@ -645,14 +645,10 @@ give it a go.</p>
 </h5>
 <p>In order to calculate the GC content withing your region sets, you
 must provide a <em>BSgenome</em> object from a <em>BSGenome</em>
-Bioconductor package associated with your organism. For <em>hg19</em>,
-<em>hg38</em>, <em>mm9</em>, and <em>mm10</em>, <em>BSgenome</em>
-objects are provided through <em>GenomicDistributionsData</em> package.
-Let’s see the GC content in our human derived datasets first through
-<em>calcGCContentRef</em> and <em>plotGCContent</em> functions and later
-we will create the same plot for <em>C. elegans</em>.</p>
+Bioconductor package associated with your organism.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">gc</span> <span class="op">=</span> <span class="fu"><a href="http://code.databio.org/GenomicDistributions/reference/calcGCContentRef.html" class="external-link">calcGCContentRef</a></span><span class="op">(</span>query<span class="op">=</span><span class="va">GRList</span>, refAssembly<span class="op">=</span><span class="st">"hg38"</span><span class="op">)</span> </span>
+<code class="sourceCode R"><span><span class="va">bsg</span> <span class="op">=</span> <span class="va">BSgenome.Hsapiens.UCSC.hg38</span></span>
+<span><span class="va">gc</span> <span class="op">=</span> <span class="fu"><a href="http://code.databio.org/GenomicDistributions/reference/calcGCContent.html" class="external-link">calcGCContent</a></span><span class="op">(</span>query<span class="op">=</span><span class="va">GRList</span>, ref <span class="op">=</span> <span class="va">bsg</span><span class="op">)</span> </span>
 <span><span class="fu"><a href="http://code.databio.org/GenomicDistributions/reference/plotGCContent.html" class="external-link">plotGCContent</a></span><span class="op">(</span><span class="va">gc</span><span class="op">)</span></span></code></pre></div>
 <p><img src="GenomicDistributions_vignette_files/figure-html/GC-1.png" width="384"></p>
 </div>
@@ -666,11 +662,9 @@ we will create the same plot for <em>C. elegans</em>.</p>
 </h5>
 <p>Just like in functions for GC content calculations, in order to
 calculate dinucleotide frequencies, you need to provide
-<em>BSgenome</em> object. Let’s first try getting dinucleotide
-frequencies for our human derived dataset through the
-<em>calcDinuclFreqRef</em> function.</p>
+<em>BSgenome</em> object.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">dinuc</span> <span class="op">=</span> <span class="fu"><a href="http://code.databio.org/GenomicDistributions/reference/calcDinuclFreqRef.html" class="external-link">calcDinuclFreqRef</a></span><span class="op">(</span>query<span class="op">=</span><span class="va">GRList</span>, refAssembly<span class="op">=</span><span class="st">"hg38"</span><span class="op">)</span> </span>
+<code class="sourceCode R"><span><span class="va">dinuc</span> <span class="op">=</span> <span class="fu"><a href="http://code.databio.org/GenomicDistributions/reference/calcDinuclFreq.html" class="external-link">calcDinuclFreq</a></span><span class="op">(</span>query<span class="op">=</span><span class="va">GRList</span>, ref<span class="op">=</span><span class="va">bsg</span><span class="op">)</span> </span>
 <span><span class="fu"><a href="http://code.databio.org/GenomicDistributions/reference/plotDinuclFreq.html" class="external-link">plotDinuclFreq</a></span><span class="op">(</span><span class="va">dinuc</span><span class="op">)</span></span></code></pre></div>
 <p><img src="GenomicDistributions_vignette_files/figure-html/dinuc-1.png" width="576"></p>
 </div>
@@ -700,7 +694,7 @@ our annotation functions will take care of everything else!</p>
 <span><span class="va">fastaSource</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"ce11.fa.gz"</span>, </span>
 <span>                          package<span class="op">=</span><span class="st">"GenomicDistributionsBioC2022"</span><span class="op">)</span></span>
 <span><span class="va">fastaSource</span></span>
-<span><span class="co">#&gt; [1] "/tmp/Rtmp1nko6N/temp_libpathee9d486710/GenomicDistributionsBioC2022/extdata/ce11.fa.gz"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "/tmp/RtmpYYhVOm/temp_libpath44c49587fb0/GenomicDistributionsBioC2022/extdata/ce11.fa.gz"</span></span></code></pre></div>
 <div class="section level5">
 <h5 id="get-chromosome-sizes">1. Get chromosome sizes<a class="anchor" aria-label="anchor" href="#get-chromosome-sizes"></a>
 </h5>
@@ -763,7 +757,7 @@ everything will be taken care of.</p>
 <span><span class="va">gtfSource</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"ce11.gtf.gz"</span>, </span>
 <span>                          package<span class="op">=</span><span class="st">"GenomicDistributionsBioC2022"</span><span class="op">)</span></span>
 <span><span class="va">gtfSource</span></span>
-<span><span class="co">#&gt; [1] "/tmp/Rtmp1nko6N/temp_libpathee9d486710/GenomicDistributionsBioC2022/extdata/ce11.gtf.gz"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "/tmp/RtmpYYhVOm/temp_libpath44c49587fb0/GenomicDistributionsBioC2022/extdata/ce11.gtf.gz"</span></span></code></pre></div>
 </div>
 <div class="section level5">
 <h5 id="get-list-of-tsss">3. Get list of TSSs<a class="anchor" aria-label="anchor" href="#get-list-of-tsss"></a>
@@ -1345,24 +1339,6 @@ partition distribution for the <em>C. elegans</em> regions? Use
 <em>calcCumulativePartitions</em> function to do the calculations and
 <em>plotCumulativePartitions</em> function to plot the results.</p>
 </div>
-<div class="section level5">
-<h5 id="gc-content-calcgccontent-plotgccontent">GC content: <em>calcGCContent()</em> + <em>plotGCContent()</em><a class="anchor" aria-label="anchor" href="#gc-content-calcgccontent-plotgccontent"></a>
-</h5>
-<p>As mentioned before, in order to calculate GC content or dinucleotide
-frequencies, you must provide BSgenome object. Let’s start with GC
-content.</p>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">BSgenome.Celegans.UCSC.ce11</span><span class="op">)</span></span>
-<span><span class="va">bsg</span> <span class="op">=</span> <span class="va">BSgenome.Celegans.UCSC.ce11</span></span>
-<span></span>
-<span><span class="va">gc_CE</span> <span class="op">=</span> <span class="fu"><a href="http://code.databio.org/GenomicDistributions/reference/calcGCContent.html" class="external-link">calcGCContent</a></span><span class="op">(</span><span class="va">GRList_CE</span>, ref<span class="op">=</span><span class="va">bsg</span><span class="op">)</span></span>
-<span><span class="fu"><a href="http://code.databio.org/GenomicDistributions/reference/plotGCContent.html" class="external-link">plotGCContent</a></span><span class="op">(</span><span class="va">gc_CE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="GenomicDistributions_vignette_files/figure-html/GC_CE-1.png" width="384"></p>
-<p><strong><em>Exercise 4</em></strong></p>
-<p>Passing the created <em>bsg</em> object along with the regions sets
-to the <em>calcDinuclFreq</em> calculate dinucleotide frequencies in the
-region sets and plot by _ plotDinuclFreq_.</p>
-</div>
 </div>
 <div class="section level3">
 <h3 id="k--customize-plotting">K. Customize plotting<a class="anchor" aria-label="anchor" href="#k--customize-plotting"></a>
@@ -1374,13 +1350,13 @@ plotting functions are editable <em>ggplot</em> objects. Let’s try to
 change few things.</p>
 <p>Let’s plot again the results showing distances between nearest
 neighbors.</p>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">neighbors</span> <span class="op">=</span> <span class="fu"><a href="http://code.databio.org/GenomicDistributions/reference/calcNeighborDist.html" class="external-link">calcNeighborDist</a></span><span class="op">(</span>query<span class="op">=</span><span class="va">GRList</span><span class="op">)</span></span>
 <span><span class="fu"><a href="http://code.databio.org/GenomicDistributions/reference/plotNeighborDist.html" class="external-link">plotNeighborDist</a></span><span class="op">(</span><span class="va">neighbors</span><span class="op">)</span></span></code></pre></div>
 <p><img src="GenomicDistributions_vignette_files/figure-html/neighbors2-1.png" width="576"></p>
 <p>Now, let’s change our color scheme, maybe title and let’s put the
 legend on the right.</p>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op">=</span> <span class="fu"><a href="http://code.databio.org/GenomicDistributions/reference/plotNeighborDist.html" class="external-link">plotNeighborDist</a></span><span class="op">(</span><span class="va">neighbors</span><span class="op">)</span></span>
 <span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_fill_manual</a></span><span class="op">(</span>values<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#A0D8F1"</span>, <span class="st">"#E9AF32"</span>,<span class="st">"#BF381A"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_color_manual</a></span><span class="op">(</span>values<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#A0D8F1"</span>, <span class="st">"#E9AF32"</span>,<span class="st">"#BF381A"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
@@ -1390,13 +1366,13 @@ legend on the right.</p>
 <p>Changing color options in a plot showing summary for one region set
 is maybe a bit tricky, but definitely possible. Let’s try it! Let’s
 start by plotting the original.</p>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">singleNeighbors</span> <span class="op">=</span> <span class="fu"><a href="http://code.databio.org/GenomicDistributions/reference/calcNearestNeighbors.html" class="external-link">calcNearestNeighbors</a></span><span class="op">(</span><span class="va">FGF2_iPSC</span><span class="op">)</span></span>
 <span><span class="fu"><a href="http://code.databio.org/GenomicDistributions/reference/plotNeighborDist.html" class="external-link">plotNeighborDist</a></span><span class="op">(</span><span class="va">singleNeighbors</span><span class="op">)</span></span></code></pre></div>
 <p><img src="GenomicDistributions_vignette_files/figure-html/neighborsSingle-1.png" width="576"></p>
 <p>This plot is not very appealing. Lets’ make the colors nicer. And
 maybe change x-axis label.</p>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">singleNeighbors</span> <span class="op">=</span> <span class="fu"><a href="http://code.databio.org/GenomicDistributions/reference/calcNearestNeighbors.html" class="external-link">calcNearestNeighbors</a></span><span class="op">(</span><span class="va">FGF2_iPSC</span><span class="op">)</span></span>
 <span><span class="va">p</span> <span class="op">=</span> <span class="fu"><a href="http://code.databio.org/GenomicDistributions/reference/plotNeighborDist.html" class="external-link">plotNeighborDist</a></span><span class="op">(</span><span class="va">singleNeighbors</span><span class="op">)</span></span>
 <span><span class="va">p</span> <span class="op">=</span> <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">xlab</a></span><span class="op">(</span><span class="st">"distnace [bp]"</span><span class="op">)</span></span>
@@ -1418,13 +1394,13 @@ chromosome? Simply by changing <em>binCount</em> argument in the
 <em>calcChromBins</em> / <em>calcChromBinsRef</em> functions.</p>
 <p>Let’s first set the number of bins (within the whole genome) to
 10,000.</p>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">chromDistributionMulti</span> <span class="op">=</span> <span class="fu"><a href="http://code.databio.org/GenomicDistributions/reference/calcChromBinsRef.html" class="external-link">calcChromBinsRef</a></span><span class="op">(</span>query<span class="op">=</span><span class="va">GRList</span>, refAssembly<span class="op">=</span><span class="st">"hg38"</span>, binCount<span class="op">=</span><span class="fl">100000</span><span class="op">)</span></span>
 <span><span class="fu"><a href="http://code.databio.org/GenomicDistributions/reference/plotChromBins.html" class="external-link">plotChromBins</a></span><span class="op">(</span><span class="va">chromDistributionMulti</span><span class="op">)</span></span></code></pre></div>
 <p><img src="GenomicDistributions_vignette_files/figure-html/chrom-plots-multi-hgh-resolution-1.png" width="480"></p>
 <p>And now let’s have a look, how does the resolution change by setting
 the number of bins to 1,000.</p>
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">chromDistributionMulti</span> <span class="op">=</span> <span class="fu"><a href="http://code.databio.org/GenomicDistributions/reference/calcChromBinsRef.html" class="external-link">calcChromBinsRef</a></span><span class="op">(</span>query<span class="op">=</span><span class="va">GRList</span>, refAssembly<span class="op">=</span><span class="st">"hg38"</span>, binCount<span class="op">=</span><span class="fl">1000</span><span class="op">)</span></span>
 <span><span class="fu"><a href="http://code.databio.org/GenomicDistributions/reference/plotChromBins.html" class="external-link">plotChromBins</a></span><span class="op">(</span><span class="va">chromDistributionMulti</span><span class="op">)</span></span></code></pre></div>
 <p><img src="GenomicDistributions_vignette_files/figure-html/chrom-plots-multi-lw-resolution-1.png" width="480"></p>
@@ -1438,7 +1414,7 @@ let’s convert the bar heights into colors and plot the results in form
 of heatmap (set up argument <code>tile=TRUE</code>). In this example, we
 will also set up the order of the samples based on the value in the plot
 center (<code>labelOrder="center"</code>).</p>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">TSSdist</span> <span class="op">=</span> <span class="fu"><a href="http://code.databio.org/GenomicDistributions/reference/calcFeatureDistRefTSS.html" class="external-link">calcFeatureDistRefTSS</a></span><span class="op">(</span>query<span class="op">=</span><span class="va">GRList</span>, refAssembly<span class="op">=</span><span class="st">"hg38"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="http://code.databio.org/GenomicDistributions/reference/plotFeatureDist.html" class="external-link">plotFeatureDist</a></span><span class="op">(</span><span class="va">TSSdist</span>, featureName<span class="op">=</span><span class="st">"TSS"</span>, size<span class="op">=</span><span class="fl">5000</span>, labelOrder<span class="op">=</span><span class="st">"center"</span>, nbins<span class="op">=</span><span class="fl">50</span>, tile<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span> </span></code></pre></div>
 <p><img src="GenomicDistributions_vignette_files/figure-html/TSS-heatmap-1.png" width="480"></p>
@@ -1456,7 +1432,7 @@ center (<code>labelOrder="center"</code>).</p>
 distances to TSSs within 5 kb from TSSs (argument <em>size</em>), where
 regions further than +-5 kb will be accumulated and plotted into
 “infinite bins” (argument <em>infBins</em>).</p>
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># TSSdist = calcFeatureDistRefTSS(query=GRList, refAssembly="hg38")</span></span>
 <span><span class="fu"><a href="http://code.databio.org/GenomicDistributions/reference/plotFeatureDist.html" class="external-link">plotFeatureDist</a></span><span class="op">(</span><span class="va">TSSdist</span>, featureName<span class="op">=</span><span class="st">"TSS"</span>, size<span class="op">=</span><span class="fl">5000</span>, infBins<span class="op">=</span><span class="cn">T</span><span class="op">)</span> </span></code></pre></div>
 <p><img src="GenomicDistributions_vignette_files/figure-html/Exiercise1-1.png" width="480"></p>
@@ -1468,7 +1444,7 @@ regions from ztf11? You can then test the different <em>size</em> /
 <em>plotFeatureDist</em> function to get an optimal view. And don’t
 foget to change the <em>featureName</em> in the <em>plotFeatureDist</em>
 function to “ztf3”.</p>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dist_ztf11</span> <span class="op">=</span> <span class="fu"><a href="http://code.databio.org/GenomicDistributions/reference/calcFeatureDist.html" class="external-link">calcFeatureDist</a></span><span class="op">(</span>query <span class="op">=</span> <span class="va">elt3</span>, features <span class="op">=</span> <span class="va">ztf11</span><span class="op">)</span></span>
 <span><span class="fu"><a href="http://code.databio.org/GenomicDistributions/reference/plotFeatureDist.html" class="external-link">plotFeatureDist</a></span><span class="op">(</span><span class="va">dist_ztf11</span>, featureName<span class="op">=</span><span class="st">"ztf11"</span>, size <span class="op">=</span> <span class="fl">1000000</span>, nbins <span class="op">=</span> <span class="fl">50</span>, infBins <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="GenomicDistributions_vignette_files/figure-html/Exiercise2-1.png" width="288"></p>
@@ -1477,18 +1453,10 @@ function to “ztf3”.</p>
 partition distribution for the <em>C. elegans</em> regions? Use
 <em>calcCumulativePartitions</em> function to do the calculations and
 <em>plotCumulativePartitions</em> function to plot the results.</p>
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cp</span> <span class="op">=</span> <span class="fu"><a href="http://code.databio.org/GenomicDistributions/reference/calcCumulativePartitions.html" class="external-link">calcCumulativePartitions</a></span><span class="op">(</span><span class="va">GRList_CE</span>, partitionList <span class="op">=</span> <span class="va">partitionList</span><span class="op">)</span></span>
 <span><span class="fu"><a href="http://code.databio.org/GenomicDistributions/reference/plotCumulativePartitions.html" class="external-link">plotCumulativePartitions</a></span><span class="op">(</span><span class="va">cp</span><span class="op">)</span></span></code></pre></div>
 <p><img src="GenomicDistributions_vignette_files/figure-html/Exiercise3-1.png" width="576"></p>
-<p><strong><em>Exercise 4</em></strong></p>
-<p>Passing the created <em>bsg</em> object along with the regions sets
-to the <em>calcDinuclFreq</em> calculate dinucleotide frequencies in the
-region sets and plot by _ plotDinuclFreq_.</p>
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">dinuc_CE</span> <span class="op">=</span> <span class="fu"><a href="http://code.databio.org/GenomicDistributions/reference/calcDinuclFreq.html" class="external-link">calcDinuclFreq</a></span><span class="op">(</span>query<span class="op">=</span><span class="va">GRList_CE</span>, ref<span class="op">=</span><span class="va">bsg</span><span class="op">)</span></span>
-<span><span class="fu"><a href="http://code.databio.org/GenomicDistributions/reference/plotDinuclFreq.html" class="external-link">plotDinuclFreq</a></span><span class="op">(</span><span class="va">dinuc_CE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="GenomicDistributions_vignette_files/figure-html/Exiercise4-1.png" width="576"></p>
 </div>
 </div>
 <div class="footnotes footnotes-end-of-document">
