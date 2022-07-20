@@ -59,6 +59,6 @@ Suggests:
     AnnotationFilter,
     rtracklayer
 URL: https://kkupkova.github.io/GenomicDistributionsBioC2022/
-BugReports: https://github.com/kkupkova/GenomicDistributionsBioC2022/issues/new/choose
+BugReports: https://github.com/databio/GenomicDistributions/issues/new
 VignetteBuilder: knitr
 DockerImage: ghcr.io/kkupkova/genomicdistributionsbioc2022:latest

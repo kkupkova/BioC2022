@@ -304,7 +304,6 @@ plotSummarySignal(signalSummaryList=cellSpecTable,
 
 ```
 
-
 ## F. Region widths
 #### _calcWidth()_ + _plotQTHist()_
 
@@ -519,6 +518,43 @@ Passing the created _bsg_ object along with the regions sets to the _calcDinuclF
 
 ## K. Customize plotting
 
+Would you like to change colors, title, axis labels, etc. in your plots? No problem. Many of _GenomicDistributions_ plotting functions offer various options. But that’s not all. The output from the plotting functions are editable _ggplot_ objects. Let’s try to change few things. 
+
+Let’s plot again the results showing distances between nearest neighbors.
+```{r neighbors2, fig.height = 4, fig.width = 6, message=FALSE, warning=FALSE}
+neighbors = calcNeighborDist(query=GRList)
+plotNeighborDist(neighbors)
+```
+
+Now, let’s change our color scheme, maybe title and let’s put the legend on the right.
+
+```{r neighborsEdit, fig.height = 4, fig.width = 6, message=FALSE, warning=FALSE}
+p = plotNeighborDist(neighbors)
+p + scale_fill_manual(values=c("#A0D8F1", "#E9AF32","#BF381A")) + 
+  scale_color_manual(values=c("#A0D8F1", "#E9AF32","#BF381A")) + 
+  ggtitle("This is my new title") +
+  theme(legend.position = "right")
+```
+
+Changing color options in a plot showing summary for one region set is maybe a bit tricky, but definitely possible. Let’s try it! Let's start by plotting the original.
+
+```{r neighborsSingle, fig.height = 4, fig.width = 6, message=FALSE, warning=FALSE}
+singleNeighbors = calcNearestNeighbors(FGF2_iPSC)
+plotNeighborDist(singleNeighbors)
+```
+
+This plot is not very appealing. Lets’ make the colors nicer. And maybe change x-axis label.
+
+```{r neighborsSingleEdit, fig.height = 4, fig.width = 6, message=FALSE, warning=FALSE}
+singleNeighbors = calcNearestNeighbors(FGF2_iPSC)
+p = plotNeighborDist(singleNeighbors)
+p = p + xlab("distnace [bp]")
+p$layers[[1]]$aes_params$fill =  "#A0D8F1"
+p$layers[[1]]$aes_params$colour =  "#E9AF32"
+p$layers[[1]]$aes_params$alpha =  0.5
+
+p
+```
 
 
 ## Additional examples
