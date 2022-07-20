@@ -329,20 +329,21 @@ plotNeighborDist(neighbors)
 ## H. GC content
 #### _calcGCContentRef()_ + _plotGCContent()_
 
-In order to calculate the GC content withing your region sets, you must provide a _BSgenome_ object from a _BSGenome_ Bioconductor package associated with your organism. For _hg19_, _hg38_, _mm9_, and _mm10_, _BSgenome_ objects are provided through _GenomicDistributionsData_ package. Let’s see the GC content in our human derived datasets first through _calcGCContentRef_ and _plotGCContent_ functions and later we will create the same plot for *C. elegans*.
+In order to calculate the GC content withing your region sets, you must provide a _BSgenome_ object from a _BSGenome_ Bioconductor package associated with your organism.
 
 ```{r GC, fig.height = 4, fig.width = 4, message=FALSE, warning=FALSE}
-gc = calcGCContentRef(query=GRList, refAssembly="hg38") 
+bsg = BSgenome.Hsapiens.UCSC.hg38
+gc = calcGCContent(query=GRList, ref = bsg) 
 plotGCContent(gc)
 ```
 
 ## I. Dinucleotide frequencies
 #### _calcDinuclFreqRef()_ + _plotDinuclFreq()_
 
-Just like in functions for GC content calculations, in order to calculate dinucleotide frequencies, you need to provide _BSgenome_ object. Let’s first try getting dinucleotide frequencies for our human derived dataset through the _calcDinuclFreqRef_ function.
+Just like in functions for GC content calculations, in order to calculate dinucleotide frequencies, you need to provide _BSgenome_ object. 
 
 ```{r dinuc, fig.height = 6, fig.width = 6, message=FALSE, warning=FALSE}
-dinuc = calcDinuclFreqRef(query=GRList, refAssembly="hg38") 
+dinuc = calcDinuclFreq(query=GRList, ref=bsg) 
 plotDinuclFreq(dinuc)
 ```
 
@@ -500,22 +501,6 @@ plotPartitions(gp)
 
 With generated _partitionList_, can you plot cumulative partition distribution for the *C. elegans* regions? Use _calcCumulativePartitions_ function to do the calculations and _plotCumulativePartitions_ function to plot the results.
 
-#### GC content: _calcGCContent()_ + _plotGCContent()_
-
-As mentioned before, in order to calculate GC content or dinucleotide frequencies, you must provide BSgenome object. Let’s start with GC content.
-
-```{r GC_CE, fig.height = 4, fig.width = 4, message=FALSE, warning=FALSE}
-library(BSgenome.Celegans.UCSC.ce11)
-bsg = BSgenome.Celegans.UCSC.ce11
-
-gc_CE = calcGCContent(GRList_CE, ref=bsg)
-plotGCContent(gc_CE)
-```
-
-**_Exercise 4_**
-
-Passing the created _bsg_ object along with the regions sets to the _calcDinuclFreq_ calculate dinucleotide frequencies in the region sets and plot by _ plotDinuclFreq_.
-
 ## K. Customize plotting
 
 Would you like to change colors, title, axis labels, etc. in your plots? No problem. Many of _GenomicDistributions_ plotting functions offer various options. But that’s not all. The output from the plotting functions are editable _ggplot_ objects. Let’s try to change few things. 
@@ -618,15 +603,6 @@ cp = calcCumulativePartitions(GRList_CE, partitionList = partitionList)
 plotCumulativePartitions(cp)
 ```
 
-
-**_Exercise 4_**
-
-Passing the created _bsg_ object along with the regions sets to the _calcDinuclFreq_ calculate dinucleotide frequencies in the region sets and plot by _ plotDinuclFreq_.
-
-```{r Exiercise4, fig.height = 6, fig.width = 6, message=FALSE, warning=FALSE}
-dinuc_CE = calcDinuclFreq(query=GRList_CE, ref=bsg)
-plotDinuclFreq(dinuc_CE)
-```
 
 
 
