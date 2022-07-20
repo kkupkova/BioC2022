@@ -39,24 +39,12 @@ Depends:
     ggplot2
 Imports:
     data.table,
-    reshape2,
-    methods,
-    utils,
-    Biostrings,
-    plyr,
-    dplyr,
-    scales,
-    broom,
-    GenomeInfoDb,
-    stats,
     ensembldb,
-    BSgenome,
-    GenomicFeatures
+    BSgenome
 Suggests: 
     knitr,
     rmarkdown,
     pkgdown,
-    AnnotationFilter,
     rtracklayer
 URL: https://kkupkova.github.io/GenomicDistributionsBioC2022/
 BugReports: https://github.com/databio/GenomicDistributions/issues/new
