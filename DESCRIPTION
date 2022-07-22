@@ -36,11 +36,13 @@ Depends:
     GenomicDistributions,
     GenomicDistributionsData,
     BSgenome.Hsapiens.UCSC.hg38.masked,
-    ggplot2
+    ggplot2,
+    GenomeInfoDb
 Imports:
     data.table,
     ensembldb,
-    BSgenome
+    BSgenome,
+    biomaRt
 Suggests: 
     knitr,
     rmarkdown,

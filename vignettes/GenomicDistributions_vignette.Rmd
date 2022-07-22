@@ -39,32 +39,14 @@ Authors:
     Public Health Sciences / Department of Biomedical Engineering / Department
     of Biochemistry and Molecular Genetics, University of Virginia].
     <br/>
-Last modified: 19 July, 2022.
+Last modified: 22 July, 2022.
 
 
 ## Overview
 
 ### Description
 
-During this workshop participants will be introduced to _GenomicDistributions_
-package. At first, we will go over a general introduction to 
-_GenomicDistributions_, where we will learn about the purpose, design, and 
-advantages of _GenomicDistributions_. Followed by instructor-led demo,
-we will go through all of the functions included in 
-_GenomicDistributions_, where participants will be able to try the functions
-on provided example datasets. The participants will learn, 
-how to calculate and plot summary statistics extracted from the example 
-datasets and how to further customize plots generated with 
-_GenomicDistributions_. Some of the _GenomicDistributions_ functions require
-genome annotations (for _hg19_, _hg38_, and _mm10_ these are all included in 
-the _GenomicDistributionsData_ package and passed to a subset of functions 
-ending with the suffix _“Ref”_), the participants will be taught how to easily 
-create and use these annotations. At the end of the workshop, all participants 
-will be able to extract following summary statistics about their regions of 
-interest: distribution over chromosomes, distances from genomic features 
-(e.g., TSSs), distribution over annotation classes, signal summary in regions,
-region widths, distances to the nearest neighbor, GC content, and dinucleotide
-frequencies.
+During this workshop participants will be introduced to _GenomicDistributions_ package. At first, we will go over a general introduction to  _GenomicDistributions_, where we will learn about the purpose, design, and  advantages of _GenomicDistributions_. Followed by instructor-led demo, we will go through all of the functions included in  _GenomicDistributions_, where participants will be able to try the functions on provided example datasets. The participants will learn, how to calculate and plot summary statistics extracted from the example  datasets and how to further customize plots generated with _GenomicDistributions_. Some of the _GenomicDistributions_ functions require genome annotations (for *hg19*, *hg38*, and *mm10* these are all included in  the _GenomicDistributionsData_ package and passed to a subset of functions ending with the suffix *“Ref”*), the participants will be taught how to easily  create and use these annotations. At the end of the workshop, all participants will be able to extract following summary statistics about their regions of  interest: distribution over chromosomes, distances from genomic features  (e.g., TSSs), distribution over annotation classes, signal summary in regions, region widths, distances to the nearest neighbor, GC content, and dinucleotide frequencies.
 
 ### Pre-requisites
 
@@ -73,18 +55,14 @@ Helpful but not required:
 * Basic knowledge of R syntax
 * Familiarity with the GenomicRanges class
 
-Anyone interested in getting familiar with _GenomicDistributions_ before the
-workshop is welcome to that that by reading the _GenomicDistributions_ 
-publication or vignettes provided with the package: 
+Anyone interested in getting familiar with _GenomicDistributions_ before the workshop is welcome to read the _GenomicDistributions_ publication or vignettes provided with the package: 
 
 * [publication](https://bmcgenomics.biomedcentral.com/articles/10.1186/s12864-022-08467-y)
 * [vignettes](http://code.databio.org/GenomicDistributions/articles/index.html)
 
 ### Participation
 
-Participants will be able to test all of the functions provided in
-_GenomicDistributions_ on example datasets, learn how to customize plots 
-and create genome annotations required by some of the functions.
+Participants will be able to test all of the functions provided in _GenomicDistributions_ on example datasets, learn how to customize plots and create genome annotations required by some of the functions.
 
 ### _R_ / _Bioconductor_ packages used
 
@@ -127,7 +105,7 @@ Participants will also learn how to:
 
 ## A. Load data
 
-Let’s first load our example region sets (BED files - hg38 genome assembly) as 
+Let’s first load our example region sets (BED files - *hg38* genome assembly) as 
 _GRanges_ / _GRangesList_ objects.
 
 ```{r, echo=TRUE, results="hide", message=FALSE, warning=FALSE}
@@ -182,7 +160,7 @@ chromDistribution_FGF2 = calcChromBinsRef(query=FGF2_iPSC, refAssembly="hg38")
 head(chromDistribution_FGF2)
 ```
 
-The output from the _calcChromBinsRef_ (or _calcChromBins_ that we will cover later in the workshop) is a data.table with following columns: _chr_, _start_, _end_ - coordinates of a bin, _regionID_ - bin number in a sorted list ob bins, _withinGroupID_ - bin number within a given chromosome, _N_ - number of region falling within the bin.
+The output from the _calcChromBinsRef_ (or _calcChromBins_ that we will cover later in the workshop) is a data.table with following columns: *chr*, *start*, *end* - coordinates of a bin, *regionID* - bin number in a sorted list of bins, *withinGroupID* - bin number within a given chromosome, *N* - number of region falling within the bin.
 
 **Plot results.**
 
@@ -199,34 +177,34 @@ chromDistributionMulti = calcChromBinsRef(query=GRList, refAssembly="hg38")
 head(chromDistributionMulti)
 ```
 
-As you can see, the output of the _calc_ function has now an additional _name_ column that assigns individual values to a dataset of origin. But plotting function stays the same, let's try it.
+As you can see, the output of the *calc* function has now an additional *name* column that assigns individual values to a dataset of origin. But plotting function stays the same, let's try it.
 
 ```{r chrom-plots-multi, fig.height = 5, fig.width = 5, message=FALSE, warning=FALSE}
 plotChromBins(chromDistributionMulti)
 ```
 
-All of the functions in _GenomicDistributions_ have the same design – you can process single genomic region set as _GRanges_ object, or process multiple region sets with the same functions by passing them _GRangesList_. All following examples will be therefore shown only on the created _GRangesList_ for multiple comparisons. 
+All of the functions in _GenomicDistributions_ have the same design – you can process single genomic region set as _GRanges_ object, or process multiple region sets with the same functions by passing them a _GRangesList_. All following examples will be therefore shown only on the created _GRangesList_ for multiple comparisons. 
 
 ## C. Distances from TSSs
 #### _calcFeatureDistRefTSS()_ + _plotFeatureDist()_
 
-To calculate distances from genomic features, _GenomicDistributions_ offers _calcFeature_ function (example shown in custom features section). Distance from transcription start sites (TSSs) is commonly used for analysis of genomic regions, we therefore created _calcFeatureDistRefTSS_, which provides precompiled set of TSSs for _hg19_, _hg38_, _mm9_, and _mm10_. Let’s give this function a try.
+To calculate distances from genomic features, _GenomicDistributions_ offers _calcFeatureDist_ function (example shown in custom features section). Distance from transcription start sites (TSSs) is commonly used for analysis of genomic regions, we therefore created _calcFeatureDistRefTSS_, which provides precompiled set of TSSs for *hg19*, *hg38*, *mm9*, and *mm10*. Let’s give this function a try.
 
 ```{r chrom-TSS-multi, fig.height = 3, fig.width = 5, message=FALSE, warning=FALSE}
 TSSdist = calcFeatureDistRefTSS(query=GRList, refAssembly="hg38")
 plotFeatureDist(TSSdist, featureName = "TSS")
 ```
 
-The _ plotFeatureDist_ plotting function (like many other _GenomicDistributions_  plotting functions) offers multiple plotting options. In default setting plotted are regions within +- 100 kb from TSSs. Let’s try what happens when we change few of the parameters in the  _ plotFeatureDist_ function. 
+The _plotFeatureDist_ plotting function (like many other _GenomicDistributions_  plotting functions) offers multiple plotting options. With default setting plotted are regions within +- 100 kb from TSSs. Let’s try what happens when we change few of the parameters in the  _plotFeatureDist_ function. 
 
 **_Exercise 1_**
 
-Using the previously calculated _ TSSdist_ object, plot histogram of distances to TSSs within 5 kb from TSSs (argument _size_), where regions further than +-5 kb will be accumulated and plotted into “infinite bins” (argument _infBins_).
+Using the previously calculated *TSSdist* object, plot histogram of distances to TSSs within 5 kb from TSSs (argument *size*), where regions further than +-5 kb will be accumulated and plotted into “infinite bins” (argument *infBins*).
 
 ## D. Distribution over genomic partitions
 #### _calcPartitionsRef()_ + _plotPartitions()_
 
-To calculate and plot, how are genomic regions distributed across genomic partitions such as promoters, exons, introns, 5’UTR, and 3’UTR _GenomicDistributions_ provides _calcPartitionsRef_ and  _plotPartitions_ functions. _calcPartitions_ function requires provided annotation classes (partitions), which are again provided within _calcPartitionsRef_ function and we will show how to generate these later in the custom reference section.
+To calculate and plot, how are genomic regions distributed across genomic partitions such as promoters, exons, introns, 5’UTR, and 3’UTR _GenomicDistributions_ provides _calcPartitionsRef_ and  _plotPartitions_ functions. _calcPartitions_ function requires provided annotation classes (partitions), which are again provided within _calcPartitionsRef_ function. We will show how to generate a genomic annotation object later in the custom reference section.
 
 ```{r partitions, fig.height = 5, fig.width = 5, message=FALSE, warning=FALSE}
 partitions = calcPartitionsRef(query=GRList, refAssembly="hg38")
@@ -242,20 +220,11 @@ expPartitions = calcExpectedPartitionsRef(query=GRList, refAssembly="hg38")
 plotExpectedPartitions(expPartitions)
 ```
 
-#### _calcCumulativePartitionsRef()_ + _plotCumulativePartitions()_
-
-To further show, how are genomic regions accumulating in different partitions (genomic regions are sorted from smallest to largest), _GenomicDistributions_ provide a unique set of functions to do that: _ calcCumulativePartitionsRef_ and _plotCumulativePartitions_.
-
-```{r cumPartitions, fig.height = 4, fig.width = 8, message=FALSE, warning=FALSE}
-cumPartitions = calcCumulativePartitionsRef(query=GRList, refAssembly="hg38")
-plotCumulativePartitions(cumPartitions)
-```
-
 ## E. Signal summary in regions
 #### _calcSummarySignal()_ + _plotSummarySignal()_
 
-In this section, we will learn how to calculate summary of signal values within our regions sets. _GenomicDistributions_ do not provide _”Ref”_ functions to calculate the signal in the overlaps. The _calcSummarySignal_ function requires a signal matrix, where each column is a condition of interest, each row a defined region within a genome and values are a normalized signal. The first column in the matrix contains the coordinates for a given region.
-_GenomicDistributionsData_ package, provides an example of such matrix (_hg19_, _hg38_, _mm10_) with calculated normalized chromatin accessibility signal across different cell types. Let’s have a look at the matrix for _hg38_.
+In this section, we will learn how to calculate summary of signal values within our regions sets. _GenomicDistributions_ does not provide _”Ref”_ function to calculate the signal in the overlaps. The _calcSummarySignal_ function requires a signal matrix, where each column is a condition of interest, each row a defined region within a genome and values are a normalized signal. The first column in the matrix contains the coordinates for a given region.
+_GenomicDistributionsData_ package, provides an example of such matrix (*hg19*, *hg38*, *mm10*) with calculated normalized chromatin accessibility signal across different cell types. Let’s have a look at the matrix for *hg38*.
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE}
 # load matrix with chromatin accessibility values for different cell types from 
@@ -266,14 +235,11 @@ openSignalMatrix_hg38 = openSignalMatrix_hg38()
 openSignalMatrix_hg38[1:5, 1:5]
 ```
 
-We can now pass this matrix to the function that extracts signal in the overlapping regions.
+We can now pass this matrix to the function that summarizes signal within region sets.
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE}
 # extract values from overlapping regions
 cellSpecTable = calcSummarySignal(query=GRList, signalMatrix=openSignalMatrix_hg38)
-
-cellSpecTable$signalSummaryMatrix[1:5, 1:5]
-cellSpecTable$matrixStats[1:5, 1:5]
 ```
 
 The output is a list that contains- 1) a matrix with signal values within our region sets:
@@ -288,7 +254,7 @@ and 2) a matrix containing boxplot summary statistics for values within each con
 cellSpecTable$matrixStats[ 1:5, 71:75]
 ```
 
-You can pass the output of the _calcSummarySignal_ function directly to the _plotSummarySignal_ function without any additional inputs, however, if you want different conditions to be colored by different colors (e.g., color cell types based on tissue of origin), you need to provide metadata. Let’s have a look at an example of suitable metadata matrix. The first column must be names _colName_ and contain column names from signal matrix (here different cell types). Notice that the column with region coordinates is not included in the metadata matrix. The rest of columns are named and generated by the user. The plotting function then accepts an argument defining the name of the column used for coloring. 
+You can pass the output of the _calcSummarySignal_ function directly to the _plotSummarySignal_ function without any additional inputs, however, if you want different conditions to be colored by different colors (e.g., color cell types based on the tissue of origin), you need to provide a metadata table. Let’s have a look at an example of suitable metadata matrix. The first column must be names *colName* and contain column names from signal matrix (here different cell types). Notice that the column with region coordinates is not included in the metadata matrix. The rest of columns are named and generated by the user. The plotting function then accepts an argument defining the name of the column used for coloring. 
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE}
 # cellType metadata matrix is provided as part of GnomicDistribution data
@@ -297,7 +263,7 @@ head(cellTypeMetadata)
 
 Now, let's finally plot the results!
 
-```{r signalSummary, fig.height = 8, fig.width = 9, message=FALSE, warning=FALSE}
+```{r signalSummary, fig.height = 8, fig.width = 10, message=FALSE, warning=FALSE}
 plotSummarySignal(signalSummaryList=cellSpecTable, 
                   metadata=cellTypeMetadata,
                   colorColumn="tissueType")
@@ -321,7 +287,7 @@ plotQTHist(widths, bins = 10, quantThresh = 0.05)
 
 Next functions offered in _GenomicDistributions_ package calculate and plot the distances between neighboring regions within a region set. You don’t need any genome annotation here, so let’s just give it a go.
 
-```{r neighbors, fig.height = 4, fig.width = 4, message=FALSE, warning=FALSE}
+```{r neighbors, fig.height = 4, fig.width = 5, message=FALSE, warning=FALSE}
 neighbors = calcNeighborDist(query=GRList)
 plotNeighborDist(neighbors)
 ```
@@ -332,7 +298,8 @@ plotNeighborDist(neighbors)
 In order to calculate the GC content withing your region sets, you must provide a _BSgenome_ object from a _BSGenome_ Bioconductor package associated with your organism.
 
 ```{r GC, fig.height = 4, fig.width = 4, message=FALSE, warning=FALSE}
-bsg = BSgenome.Hsapiens.UCSC.hg38
+library(BSgenome.Hsapiens.UCSC.hg38.masked)
+bsg = BSgenome.Hsapiens.UCSC.hg38.masked
 gc = calcGCContent(query=GRList, ref = bsg) 
 plotGCContent(gc)
 ```
@@ -349,9 +316,9 @@ plotDinuclFreq(dinuc)
 
 ## J. Custom reference
 
-Unless you are working with human or mouse data, for which associated _GenomicDistributionsData_ package provides precompiled annotation files (available for:  _hg19_, _hg38_, _mm10_, _mm9_), you will need to use _“calc”_ function without _"Ref"_ suffix and provide required genome annotations objects (e.g., chromosome sizes, list of TSSs). But don’t worry, _GenomicDistributions_ provide functions to create such annotation objects. All you need to do is provide FASTA and GTF files for your organism of interest. The only exceptions are functions for calculation of GC content and dinucleotide frequencies, which require BSgenome object. We will show, how to pass a BSgenome object to these functions at the end of this section.
+Unless you are working with human or mouse data, for which associated _GenomicDistributionsData_ package provides precompiled annotation files (available for:  *hg19*, *hg38*, *mm10*, *mm9*), you will need to use *“calc”* function without *"Ref"* suffix and provide required genome annotations objects (e.g., chromosome sizes, list of TSSs). But don’t worry, _GenomicDistributions_ provide functions to create such annotation objects. All you need to do is provide FASTA and GTF files for your organism of interest.
 
-Let's try to create all necessary genome annotation for _Caenorhabditis elegans_. 
+Let's try to create all necessary genome annotation for *Caenorhabditis elegans*. 
 
 We can first have a look, what can we extract from FASTA file. All you need to do is simply provide a path to your FASTA file (or URL) and our annotation functions will take care of everything else!
 
@@ -365,17 +332,9 @@ fastaSource
 #### 1. Get chromosome sizes
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE}
-# get chromosome sizes from the FASTA file
-Celegans_chromSizes = getChromSizesFromFasta(source=fastaSource)
-
-Celegans_chromSizes
-```
-
-As you can see, the output of the _getChromSizesFromFasta_ function is a named vector. Our FASTA file comes from Ensembl and therefore misses _chr_ in front of the chromosome number. Let’s fix that.
-
-```{r, echo=TRUE, message=FALSE, warning=FALSE}
-# paste chr in front of chromosome numbers
-names(Celegans_chromSizes) = paste0("chr", names(Celegans_chromSizes))
+# get chromosome sizes from the FASTA file 
+# the provided FASTA file comes from Ensembl - set up convertEnsemblUCSC=TRUE to get UCSC formatted chromosome names
+Celegans_chromSizes = getChromSizesFromFasta(source=fastaSource, convertEnsemblUCSC=TRUE)
 
 Celegans_chromSizes
 ```
@@ -408,11 +367,11 @@ Celegans_TSSs = getTssFromGTF(source=gtfSource, convertEnsemblUCSC=TRUE)
 Celegans_TSSs 
 ```
 
-The output is GRanges object with TSSs coordinates, that can now be passed to _calcFeatureDist_ function and you get equivalent results as if you used _calcFeatureDistRefTSS_ function with your genome of interest.
+The output is GRanges object with TSSs coordinates that can now be passed to _calcFeatureDist_ function and you get equivalent results as if you used _calcFeatureDistRefTSS_ function with your genome of interest.
 
 #### 4. Get genome partitions
 
-For overlaps with genomic partitions: _ calcPartitions_, _ calcExpectedPartitions_, and _ calcCumulativePartitions_ functions, a user needs to provide a GRangesList with coordinates for each partition. We do that by first extracting gene models (coordinates for genes, exons available 3’UTRs and 5’UTRs). Let’s start with extracting gene models.
+For overlaps with genomic partitions: _calcPartitions_, _calcExpectedPartitions_, and _calcCumulativePartitions_ functions, a user needs to provide a GRangesList with coordinates for each partition. We do that by first extracting gene models (coordinates for genes, exons, and if available, 3’UTRs and 5’UTRs). Let’s start with extracting gene models.
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE}
 features = c("gene", "exon","three_prime_utr", "five_prime_utr")
@@ -420,21 +379,25 @@ Celegans_geneModels = getGeneModelsFromGTF(source=gtfSource, features=features, 
 Celegans_geneModels
 ```
 
-We now need to extract additional elements:
-* core promoters (100 bp upstream)
-* proximal promoters (2 kb upstream)
+We now need to extract additional elements. Provided options are:
+
+* core promoters (default: 100 bp upstream)
+* proximal promoters (default: 2 kb upstream)
 * exons
 * introns
 * 5’UTR (if provided)
 * 3’UTR (if provided)
 
-This is all done automatically with following function:
+This is all done automatically with following function.
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE}
 partitionList = genomePartitionList(genesGR = Celegans_geneModels$gene,
                                     exonsGR = Celegans_geneModels$exon, 
                                     threeUTRGR = Celegans_geneModels$three_prime_utr,
-                                    fiveUTRGR = Celegans_geneModels$five_prime_utr)
+                                    fiveUTRGR = Celegans_geneModels$five_prime_utr, 
+                                    getCorePromoter = TRUE, 
+                                    getProxProm = FALSE, 
+                                    corePromSize = 200)
 partitionList
 ```
 
@@ -442,7 +405,7 @@ If you want additional features included in the partition list, simply attach th
 
 And that's it! We now have all genome annotations required to run all of the _GenomicDistributions_ functions! Let's try them!
 
-#### Load _C. elegans_ region sets
+#### *Load C. elegans region sets*
 First load data into GRangesList object just like before.
 
 ```{r, echo=TRUE, results="hide", message=FALSE, warning=FALSE}
@@ -466,29 +429,30 @@ GRList_CE = GRangesList(elt3=elt3,
  
 #### Distribution over chromosomes: _calcChromBins()_ + _plotChromBins()_
 
-Let's start by plotting the distribution over chromosomes. Notice that the used _calc_ function is missing the _Ref_ suffix, since we are providing our own annotations in form of the previously created bins over genome.
+Let's start by plotting the distribution over chromosomes. Notice that the used *calc* function is missing the *Ref* suffix, since we are providing our own annotations in form of the previously created bins over genome.
 
-```{r chrom-plots-CE, fig.height = 3, fig.width = 3, message=FALSE, warning=FALSE}
+```{r chrom-plots-CE, fig.height = 4, fig.width = 4, message=FALSE, warning=FALSE}
 chromDistribution_CE = calcChromBins(query=GRList_CE, bins=Celegans_bins)
 plotChromBins(chromDistribution_CE)
 ```
 
-#### Distances from features: _calcFeatureDist()_ + _plotFeatureDist()_
 **Distances from TSSs**
+#### _calcFeatureDist()_ + _plotFeatureDist()_
 
 Now that we have the coordinates of TSSs in *C. elegans*, let’s have a look at the distances of our region sets to TSSs. 
 
 ```{r TSSdistCE, fig.height = 3, fig.width = 6, message=FALSE, warning=FALSE}
 TSSdist_CE = calcFeatureDist(GRList_CE, features=Celegans_TSSs)
-plotFeatureDist(TSSdist_CE, featureName="TSS", size = 5000, nbins = 50, infBins = TRUE)
+plotFeatureDist(TSSdist_CE, featureName="TSS", size = 5000, 
+                nbins = 50, infBins = TRUE)
 ```
 
 **_Exercise 2_**
 
-The _calcFeatureDist_ function is not designed only for distances from TSSs. Can you calculate and plot the distances of elt3 regions from ztf11? You can then test the different _size_ / _nbins_ / _infBins_ settings in the _plotFeatureDist_ function to get an optimal view. And don't foget to change the _featureName_ in the _plotFeatureDist_ function to "ztf3".
+The _calcFeatureDist_ function is not designed only for distances from TSSs. Can you calculate and plot the distances of elt3 regions from ztf11? You can then test the different *size* / *nbins* / *infBins* settings in the _plotFeatureDist_ function to get an optimal view. And don't foget to change the *featureName* in the _plotFeatureDist_ function to "ztf3".
 
-
-#### Distribution over genomic partitions: _calcPartitions()_ + _plotPartitions()_
+**Distribution over genomic partitions**
+#### _calcPartitions()_ + _plotPartitions()_
 
 Next we can use the create _ partitionList_ to get overlaps with genomic partitions.
 
@@ -497,9 +461,16 @@ gp = calcPartitions(GRList_CE, partitionList = partitionList)
 plotPartitions(gp) 
 ```
 
-**_Exercise 3_**
+**Expected partitions overlaps**
+#### _calcExpectedPartitions()_ + _plotExpectedPartitions()_
 
-With generated _partitionList_, can you plot cumulative partition distribution for the *C. elegans* regions? Use _calcCumulativePartitions_ function to do the calculations and _plotCumulativePartitions_ function to plot the results.
+You can again calculate also how are observed overlaps comparing to what would be expected if distribution of regions was uniform across genome. Not that  _calcExpectedPartitions_ functions requires also *genomeSize* argument to calculate the size of intergenic regions. You can get that simply as a sum of chromosome sizes.
+
+```{r expPartitionsCE, fig.height = 4, fig.width = 4, message=FALSE, warning=FALSE}
+ep = calcExpectedPartitions(GRList_CE, partitionList = partitionList, 
+                            genomeSize = sum(Celegans_chromSizes))
+plotExpectedPartitions(ep) 
+```
 
 ## K. Customize plotting
 
@@ -511,9 +482,10 @@ neighbors = calcNeighborDist(query=GRList)
 plotNeighborDist(neighbors)
 ```
 
-Now, let’s change our color scheme, maybe title and let’s put the legend on the right.
+Now, let’s change our color scheme, maybe a title too and let’s put the legend on the right side of the plot.
 
 ```{r neighborsEdit, fig.height = 4, fig.width = 6, message=FALSE, warning=FALSE}
+library(ggplot2)
 p = plotNeighborDist(neighbors)
 p + scale_fill_manual(values=c("#A0D8F1", "#E9AF32","#BF381A")) + 
   scale_color_manual(values=c("#A0D8F1", "#E9AF32","#BF381A")) + 
@@ -546,7 +518,7 @@ p
 
 ### Change the resolution of distribution over chromosomes
 
-How can I change the resolution of the distribution of regions over chromosome? Simply by changing _binCount_ argument in the _calcChromBins_ / _calcChromBinsRef_ functions.
+How can I change the resolution of the distribution of regions over chromosome? Simply by changing *binCount* argument in the _calcChromBins_ / _calcChromBinsRef_ functions.
 
 Let's first set the number of bins (within the whole genome) to 10,000.
 
@@ -571,13 +543,52 @@ TSSdist = calcFeatureDistRefTSS(query=GRList, refAssembly="hg38")
 plotFeatureDist(TSSdist, featureName="TSS", size=5000, labelOrder="center", nbins=50, tile=TRUE) 
 ```
 
+### Calculate and plot how do size-sorted genomic regions accumulate withing different genome partitions
+#### _calcCumulativePartitionsRef()_ + _plotCumulativePartitions()_
+
+To further show, how are genomic regions accumulating in different partitions (genomic regions are sorted from smallest to largest), _GenomicDistributions_ provide a unique set of functions to do that: _ calcCumulativePartitionsRef_ and _plotCumulativePartitions_.
+
+```{r cumPartitions, fig.height = 4, fig.width = 8, message=FALSE, warning=FALSE}
+cumPartitions = calcCumulativePartitionsRef(query=GRList, refAssembly="hg38")
+plotCumulativePartitions(cumPartitions)
+```
+
+If you are working with other organism than human or mouse, you can generate these plots with _calcCumulativePartitions()_ + _plotCumulativePartitions()_ functions. You just need to pass the list of partitions to the _calcCumulativePartitions()_ function.
+
+```{r cumPartitionsNonRef, fig.height = 4, fig.width = 8, message=FALSE, warning=FALSE}
+cp = calcCumulativePartitions(GRList_CE, partitionList = partitionList)
+plotCumulativePartitions(cp)
+```
+
 ### Custom features
+Do you want to plot overlaps with additional partition such as enhancers? Let’s do it! You will need to use _calcPartitions_ function without the *“Ref”* suffix and provide the partition list. 
+
+```{r customFeatures, fig.height = 4, fig.width = 8, message=FALSE, warning=FALSE}
+# get partition list for hg38
+geneModels = GenomicDistributions::getGeneModels("hg38")
+partitionList = GenomicDistributions::genomePartitionList(geneModels$genesGR, 
+                                                          geneModels$exonsGR,
+                                                          geneModels$threeUTRGR, 
+                                                          geneModels$fiveUTRGR)
+
+# load enhancers as GRanges
+enhancer_file = H3K27ac_Bcell_file = system.file("extdata", "enhancers.bed.gz", 
+                                 package="GenomicDistributionsBioC2022")
+enhancers = rtracklayer::import(enhancer_file)
+
+# attach enhancer Granges to the existin partition list
+partitionList[["enhancer"]] = enhancers
+
+# calculate overlaps and plot
+partitons = calcPartitions(query=GRList, partitionList = partitionList)
+plotPartitions(partitons)
+```
 
 ## Exercise solutions
 
 **_Exercise 1_**
 
-Using the previously calculated _ TSSdist_ object, plot histogram of distances to TSSs within 5 kb from TSSs (argument _size_), where regions further than +-5 kb will be accumulated and plotted into “infinite bins” (argument _infBins_).
+Using the previously calculated *TSSdist* object, plot histogram of distances to TSSs within 5 kb from TSSs (argument *size*), where regions further than +-5 kb will be accumulated and plotted into “infinite bins” (argument *infBins*).
 
 ```{r Exiercise1, fig.height = 3, fig.width = 5, message=FALSE, warning=FALSE}
 # TSSdist = calcFeatureDistRefTSS(query=GRList, refAssembly="hg38")
@@ -587,20 +598,11 @@ plotFeatureDist(TSSdist, featureName="TSS", size=5000, infBins=T)
 
 **_Exercise 2_**
 
-The _calcFeatureDist_ function is not designed only for distances from TSSs. Can you calculate and plot the distances of elt3 regions from ztf11? You can then test the different _size_ / _nbins_ / _infBins_ settings in the _plotFeatureDist_ function to get an optimal view. And don't foget to change the _featureName_ in the _plotFeatureDist_ function to "ztf3".
+The _calcFeatureDist_ function is not designed only for distances from TSSs. Can you calculate and plot the distances of elt3 regions from ztf11? You can then test the different *size* / *nbins* / *infBins* settings in the _plotFeatureDist_ function to get an optimal view. And don't foget to change the *featureName* in the _plotFeatureDist_ function to "ztf3".
 
 ```{r Exiercise2, fig.height = 3, fig.width = 3, message=FALSE, warning=FALSE}
 dist_ztf11 = calcFeatureDist(query = elt3, features = ztf11)
 plotFeatureDist(dist_ztf11, featureName="ztf11", size = 1000000, nbins = 50, infBins = TRUE)
-```
-
-**_Exercise 3_**
-
-With generated _partitionList_, can you plot cumulative partition distribution for the *C. elegans* regions? Use _calcCumulativePartitions_ function to do the calculations and _plotCumulativePartitions_ function to plot the results.
-
-```{r Exiercise3, fig.height = 3.5, fig.width = 6, message=FALSE, warning=FALSE}
-cp = calcCumulativePartitions(GRList_CE, partitionList = partitionList)
-plotCumulativePartitions(cp)
 ```
 
 
