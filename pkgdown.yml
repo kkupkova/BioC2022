@@ -3,7 +3,7 @@ pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   GenomicDistributions_vignette: GenomicDistributions_vignette.html
-last_built: 2022-07-20T15:05Z
+last_built: 2022-07-25T17:10Z
 urls:
   reference: https://kkupkova.github.io/GenomicDistributions_BioC2022/reference
   article: https://kkupkova.github.io/GenomicDistributions_BioC2022/articles
