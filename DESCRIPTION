@@ -1,7 +1,7 @@
 Package: GenomicDistributionsBioC2022
 Title: GenomicDistributions: Fast, Easy, And Flexible Summary And 
    Visualization Of Genomic Regions
-Version: 1.0.0
+Version: 1.0.1
 Authors@R: 
     c(
 	  person("Kristyna", "Kupkova", role=c("aut", "cre"),
@@ -36,13 +36,13 @@ Depends:
     GenomicDistributions,
     GenomicDistributionsData,
     BSgenome.Hsapiens.UCSC.hg38.masked,
-    ggplot2,
     GenomeInfoDb
 Imports:
     data.table,
     ensembldb,
     BSgenome,
-    biomaRt
+    biomaRt,
+    ggplot2
 Suggests: 
     knitr,
     rmarkdown,
