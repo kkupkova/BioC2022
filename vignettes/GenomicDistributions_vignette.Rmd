@@ -395,8 +395,9 @@ partitionList = genomePartitionList(genesGR = Celegans_geneModels$gene,
                                     exonsGR = Celegans_geneModels$exon, 
                                     threeUTRGR = Celegans_geneModels$three_prime_utr,
                                     fiveUTRGR = Celegans_geneModels$five_prime_utr, 
-                                    getCorePromoter = FALSE, 
-                                    proxPromSize = 200)
+                                    getCorePromoter = TRUE, 
+                                    getProxPromoter = FALSE, 
+                                    corePromSize = 200)
 partitionList
 ```
 

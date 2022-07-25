@@ -33,7 +33,7 @@ Depends:
     Biobase,
     IRanges,
     GenomicRanges, 
-    GenomicDistributions,
+    databio/GenomicDistributions,
     GenomicDistributionsData,
     BSgenome.Hsapiens.UCSC.hg38.masked,
     GenomeInfoDb
